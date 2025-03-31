@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax2Win Clone - Complete Tax Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #f5f5f5;
+            --text-color: #333;
+            --light-gray: #e0e0e0;
+            --medium-gray: #9e9e9e;
+            --dark-gray: #616161;
+            --white: #ffffff;
+            --error-color: #d32f2f;
+            --success-color: #388e3c;
+            --warning-color: #ffa000;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--dark-gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .main-nav ul {
+            display: flex;
+        }
+
+        .main-nav li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .main-nav a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            min-width: 200px;
+            display: none;
+            z-index: 10;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            margin: 10px 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-actions .btn {
+            margin-left: 15px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://tax2win.in/assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Tax Tools Section */
+        .tax-tools {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .tool-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .tool-card p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            box-shadow: var(--box-shadow);
+        }
+
+        .service-img {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .service-content p {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+
+        .testimonial {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--medium-gray);
+            font-size: 14px;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Tax Calculator Section */
+        .tax-calculator-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+        }
+
+        .calculator-container {
+            display: flex;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .calculator-form {
+            flex: 1;
+            padding: 30px;
+            color: var(--text-color);
+        }
+
+        .calculator-results {
+            flex: 1;
+            padding: 30px;
+            background-color: var(--secondary-color);
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon input {
+            padding-left: 35px;
+        }
+
+        .input-with-icon .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+        }
+
+        .regime-toggle {
+            display: flex;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .regime-option {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .regime-option.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--medium-gray);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .info-text {
+            font-size: 12px;
+            color: var(--medium-gray);
+            margin-top: 5px;
+        }
+
+        .results-summary h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item .label {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .summary-item .value {
+            font-weight: 600;
+        }
+
+        .total-tax {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        .total-tax .summary-item {
+            border-bottom: none;
+        }
+
+        .total-tax .label {
+            font-size: 16px;
+        }
+
+        .total-tax .value {
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        .tax-breakup {
+            margin-top: 25px;
+        }
+
+        .tax-breakup h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tax-breakup table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tax-breakup th,
+        .tax-breakup td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .tax-breakup th {
+            font-weight: 500;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+
+        .tax-breakup tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tax-breakup .highlight {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .suggestions {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #fff8e1;
+            border-radius: var(--border-radius);
+        }
+
+        .suggestions h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--warning-color);
+            margin-bottom: 10px;
+        }
+
+        .suggestions ul {
+            padding-left: 20px;
+        }
+
+        .suggestions li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 20px 0;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item.active {
+            background-color: var(--primary-color);
+        }
+
+        .menu-item i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background-color: var(--secondary-color);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+        }
+
+        .stat-card h3 {
+            font-size: 16px;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .recent-activities {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+        }
+
+        .activities-list {
+            margin-top: 20px;
+        }
+
+        .activity-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        .activity-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .activity-content p {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--medium-gray);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2c3e50;
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .calculator-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 10px;
+            }
+
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 15px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://tax2win.in/assets/images/logo.png" alt="Tax2Win">
+                Tax2Win
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Income Tax Filing</a></li>
+                            <li><a href="#">GST Registration</a></li>
+                            <li><a href="#">Company Registration</a></li>
+                            <li><a href="#">TDS Return Filing</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-dropdown">
+                        <a href="#">Tax Tools <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Income Tax Calculator</a></li>
+                            <li><a href="#">HRA Calculator</a></li>
+                            <li><a href="#">GST Calculator</a></li>
+                            <li><a href="#">Capital Gains Calculator</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Complete Tax Solutions for Individuals & Businesses</h1>
+                <p>File your tax returns easily with India's most trusted tax filing platform. Get expert assistance and maximize your tax savings.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary">File Your Tax Return</a>
+                    <a href="#" class="btn btn-outline">Explore Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Tools Section -->
+    <section class="tax-tools">
+        <div class="container">
+            <h2 class="section-title">Tax Tools & Calculators</h2>
+            <p class="section-subtitle">Use our smart tax tools to calculate your tax liability, plan your investments, and maximize your tax savings.</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Income Tax Calculator</h3>
+                    <p>Calculate your income tax liability for FY 2023-24 (AY 2024-25) under both old and new tax regimes.</p>
+                    <a href="#" class="btn btn-outline">Calculate Now</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>HRA Calculator</h3>
+                    <p>Calculate your HRA exemption and optimize your salary structure to save maximum tax.</p>
+                    <a href="#" class="btn btn-outline">Calculate Now</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Capital Gains Calculator</h3>
+                    <p>Calculate capital gains tax on sale of property, stocks, mutual funds and other assets.</p>
+                    <a href="#" class="btn btn-outline">Calculate Now</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate GST payable on goods and services under different tax slabs.</p>
+                    <a href="#" class="btn btn-outline">Calculate Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Tax Services</h2>
+            <p class="section-subtitle">We offer comprehensive tax solutions for individuals, businesses, startups, and enterprises.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://tax2win.in/assets/images/income-tax-filing.jpg" alt="Income Tax Filing">
+                    </div>
+                    <div class="service-content">
+                        <h3>Income Tax Filing</h3>
+                        <p>File your income tax return with expert assistance and maximize your tax refund.</p>
+                        <div class="service-price">Starting at ₹999</div>
+                        <a href="#" class="btn btn-primary">Know More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://tax2win.in/assets/images/gst-registration.jpg" alt="GST Registration">
+                    </div>
+                    <div class="service-content">
+                        <h3>GST Registration</h3>
+                        <p>Get your GST registration done quickly with our expert consultants.</p>
+                        <div class="service-price">Starting at ₹1499</div>
+                        <a href="#" class="btn btn-primary">Know More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://tax2win.in/assets/images/company-registration.jpg" alt="Company Registration">
+                    </div>
+                    <div class="service-content">
+                        <h3>Company Registration</h3>
+                        <p>Register your private limited company, LLP, or one person company.</p>
+                        <div class="service-price">Starting at ₹5999</div>
+                        <a href="#" class="btn btn-primary">Know More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Calculator Section -->
+    <section class="tax-calculator-section">
+        <div class="container">
+            <h2 class="section-title">Income Tax Calculator</h2>
+            <p class="section-subtitle">Calculate your income tax liability for FY 2023-24 under both old and new tax regimes.</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="regime-toggle">
+                        <div class="regime-option active" onclick="toggleRegime('new')">New Tax Regime</div>
+                        <div class="regime-option" onclick="toggleRegime('old')">Old Tax Regime</div>
+                    </div>
+                    
+                    <div class="tabs">
+                        <div class="tab active" onclick="openTab('basic')">Basic Details</div>
+                        <div class="tab" onclick="openTab('deductions')">Deductions</div>
+                        <div class="tab" onclick="openTab('investments')">Investments</div>
+                    </div>
+                    
+                    <form id="taxForm">
+                        <div id="basic" class="tab-content active">
+                            <div class="form-section">
+                                <h3>Personal Information</h3>
+                                <div class="form-group">
+                                    <label for="financial-year">Financial Year</label>
+                                    <select id="financial-year">
+                                        <option value="2023-24">2023-24 (Assessment Year 2024-25)</option>
+                                        <option value="2024-25">2024-25 (Assessment Year 2025-26)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age-group">Age Group</label>
+                                    <select id="age-group">
+                                        <option value="below-60">Below 60 years</option>
+                                        <option value="60-80">60 to 80 years (Senior Citizen)</option>
+                                        <option value="above-80">Above 80 years (Super Senior Citizen)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Income Details</h3>
+                                <div class="form-group">
+                                    <label for="income">Annual Income (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="income" placeholder="Enter your annual income" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hra-exempt">HRA Exemption (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="hra-exempt" placeholder="Enter HRA exemption amount">
+                                    </div>
+                                    <p class="info-text">Only applicable if you're receiving HRA from your employer</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="deductions" class="tab-content">
+                            <div class="form-section">
+                                <h3>Deductions</h3>
+                                <div class="form-group">
+                                    <label for="section-80c">Section 80C (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="section-80c" placeholder="Max ₹1,50,000">
+                                    </div>
+                                    <p class="info-text">Investments in PPF, ELSS, Life Insurance, etc.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="section-80d">Section 80D (Medical Insurance) (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="section-80d" placeholder="Max ₹75,000">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="section-80e">Section 80E (Education Loan Interest) (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="section-80e" placeholder="Enter amount">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="other-deductions">Other Deductions (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="other-deductions" placeholder="Enter other deductions">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="investments" class="tab-content">
+                            <div class="form-section">
+                                <h3>Investments</h3>
+                                <div class="form-group">
+                                    <label for="ppf">Public Provident Fund (PPF) (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="ppf" placeholder="Enter PPF investment">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="elss">ELSS Mutual Funds (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="elss" placeholder="Enter ELSS investment">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nps">National Pension System (NPS) (₹)</label>
+                                    <div class="input-with-icon">
+                                        <span class="icon">₹</span>
+                                        <input type="number" id="nps" placeholder="Enter NPS investment">
+                                    </div>
+                                    <p class="info-text">Additional ₹50,000 deduction available under Section 80CCD(1B)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Calculate Tax</button>
+                    </form>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="results-summary">
+                        <h2>Tax Calculation Summary</h2>
+                        <div id="summary">
+                            <div class="summary-item">
+                                <span class="label">Annual Income</span>
+                                <span class="value" id="annual-income">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Total Deductions</span>
+                                <span class="value" id="total-deductions">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Taxable Income</span>
+                                <span class="value" id="taxable-income">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Income Tax</span>
+                                <span class="value" id="income-tax">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Health & Education Cess (4%)</span>
+                                <span class="value" id="cess">₹0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="total-tax">
+                            <div class="summary-item">
+                                <span class="label">Total Tax Liability</span>
+                                <span class="value" id="total-tax">₹0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tax-breakup">
+                        <h3>Tax Breakup</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Component</th>
+                                    <th>Amount (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tax-breakup-table">
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="suggestions" id="suggestions">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Thousands of individuals and businesses trust Tax2Win for their tax filing needs.</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"Tax2Win made my tax filing process so simple and hassle-free. Their experts helped me save ₹15,000 in taxes that I didn't even know I could claim!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Sharma">
+                        </div>
+                        <div class="author-info">
+                            <h4>Rahul Sharma</h4>
+                            <p>Software Engineer, Bangalore</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"As a small business owner, GST compliance was always a headache. Tax2Win's GST filing service saved me hours of work every month."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Patel">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya Patel</h4>
+                            <p>Business Owner, Mumbai</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The tax calculator helped me understand how much I could save by switching to the new tax regime. Very useful tool!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Amit Kumar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Amit Kumar</h4>
+                            <p>Bank Manager, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <div class="slider-dot active" onclick="showTestimonial(0)"></div>
+                    <div class="slider-dot" onclick="showTestimonial(1)"></div>
+                    <div class="slider-dot" onclick="showTestimonial(2)"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section (Hidden by default) -->
+    <div class="dashboard" style="display: none;">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Tax2Win Dashboard</h3>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>My Returns</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-calculator"></i>
+                    <span>Tax Calculators</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Tax Planning</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Dashboard</h1>
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    </div>
+                    <span>Rahul Sharma</span>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Pending Actions</h3>
+                    <div class="stat-value">2</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Tax Savings</h3>
+                    <div class="stat-value">₹15,240</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Completed Returns</h3>
+                    <div class="stat-value">3</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Upcoming Deadlines</h3>
+                    <div class="stat-value">1</div>
+                </div>
+            </div>
+            
+            <div class="recent-activities">
+                <h2>Recent Activities</h2>
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>ITR Filed for AY 2023-24</h4>
+                            <p>Your income tax return for Assessment Year 2023-24 has been successfully filed.</p>
+                            <div class="activity-time">2 days ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>ITR Verified</h4>
+                            <p>Your income tax return has been verified by our tax expert.</p>
+                            <div class="activity-time">5 days ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>New Message from Tax Expert</h4>
+                            <p>You have a new message regarding your tax filing.</p>
+                            <div class="activity-time">1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Tax2Win</h3>
+                    <p>India's most trusted tax filing platform that provides end-to-end tax solutions for individuals and businesses.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Income Tax Filing</a></li>
+                        <li><a href="#">GST Registration & Filing</a></li>
+                        <li><a href="#">Company Registration</a></li>
+                        <li><a href="#">TDS Return Filing</a></li>
+                        <li><a href="#">Tax Planning</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Tax Tools</h3>
+                    <ul>
+                        <li><a href="#">Income Tax Calculator</a></li>
+                        <li><a href="#">HRA Calculator</a></li>
+                        <li><a href="#">Capital Gains Calculator</a></li>
+                        <li><a href="#">GST Calculator</a></li>
+                        <li><a href="#">Tax Saving Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Tax Street, Mumbai, India</p>
+                        <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                        <p><i class="fas fa-envelope"></i> support@tax2win.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Tax2Win. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('show');
+        });
+
+        // Tax Calculator Tabs
+        function openTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show the selected tab content and mark tab as active
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Tax Regime Toggle
+        function toggleRegime(regime) {
+            const options = document.querySelectorAll('.regime-option');
+            options.forEach(option => option.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        // Testimonial Slider
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Tax Calculation Form Submission
+        document.getElementById('taxForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const financialYear = document.getElementById('financial-year').value;
+            const ageGroup = document.getElementById('age-group').value;
+            const regime = document.querySelector('.regime-option.active').textContent.includes('New') ? 'new' : 'old';
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const hraExempt = parseFloat(document.getElementById('hra-exempt').value) || 0;
+            
+            // Get deduction values
+            const section80c = parseFloat(document.getElementById('section-80c').value) || 0;
+            const section80d = parseFloat(document.getElementById('section-80d').value) || 0;
+            const section80e = parseFloat(document.getElementById('section-80e').value) || 0;
+            const otherDeductions = parseFloat(document.getElementById('other-deductions').value) || 0;
+            
+            // Get investment values
+            const ppf = parseFloat(document.getElementById('ppf').value) || 0;
+            const elss = parseFloat(document.getElementById('elss').value) || 0;
+            const nps = parseFloat(document.getElementById('nps').value) || 0;
+            
+            // Calculate tax
+            const result = calculateTax(
+                financialYear,
+                ageGroup,
+                regime,
+                income,
+                hraExempt,
+                {
+                    section80c,
+                    section80d,
+                    section80e,
+                    otherDeductions
+                },
+                {
+                    ppf,
+                    elss,
+                    nps
+                }
+            );
+            
+            // Display results
+            displayResults(result, regime);
+        });
+
+        // Tax Calculation Logic
+        function calculateTax(financialYear, ageGroup, regime, income, hraExempt, deductions, investments) {
+            // Calculate total deductions under old regime
+            const total80cDeductions = Math.min(
+                deductions.section80c + 
+                investments.ppf + 
+                investments.elss, 
+                150000
+            );
+            
+            const totalDeductions = total80cDeductions + 
+                deductions.section80d + 
+                deductions.section80e + 
+                deductions.otherDeductions;
+            
+            // Additional NPS deduction (Section 80CCD(1B))
+            const npsAdditionalDeduction = Math.min(investments.nps, 50000);
+            const totalDeductionsWithNPS = totalDeductions + npsAdditionalDeduction;
+            
+            // Calculate taxable income based on regime
+            let taxableIncome, tax, cess, totalTax;
+            
+            if (regime === 'old') {
+                // Old regime calculation
+                taxableIncome = income - hraExempt - totalDeductionsWithNPS;
+                tax = calculateOldRegimeTax(taxableIncome, ageGroup);
+            } else {
+                // New regime calculation
+                taxableIncome = income - hraExempt - 50000; // Standard deduction
+                tax = calculateNewRegimeTax(taxableIncome);
+            }
+            
+            // Calculate health and education cess (4%)
+            cess = tax * 0.04;
+            totalTax = tax + cess;
+            
+            // Calculate effective tax rate
+            const effectiveTaxRate = (totalTax / income) * 100;
+            
+            return {
+                income,
+                taxableIncome,
+                tax,
+                cess,
+                totalTax,
+                effectiveTaxRate,
+                regime,
+                deductions: totalDeductionsWithNPS
+            };
+        }
+
+        function calculateOldRegimeTax(income, ageGroup) {
+            let tax = 0;
+            
+            // Determine basic exemption limit based on age
+            let exemptionLimit;
+            if (ageGroup === 'below-60') {
+                exemptionLimit = 250000;
+            } else if (ageGroup === '60-80') {
+                exemptionLimit = 300000;
+            } else { // above-80
+                exemptionLimit = 500000;
+            }
+            
+            if (income <= exemptionLimit) {
+                return 0;
+            }
+            
+            // Calculate tax based on slabs
+            const taxableIncome = income - exemptionLimit;
+            
+            if (taxableIncome <= 250000) {
+                tax = 0;
+            } else if (taxableIncome <= 500000) {
+                tax = (taxableIncome - 250000) * 0.05;
+            } else if (taxableIncome <= 1000000) {
+                tax = 12500 + (taxableIncome - 500000) * 0.2;
+            } else {
+                tax = 112500 + (taxableIncome - 1000000) * 0.3;
+            }
+            
+            // Rebate under section 87A (if applicable)
+            if (taxableIncome <= 500000) {
+                tax = Math.max(tax - 12500, 0);
+            }
+            
+            return tax;
+        }
+
+        function calculateNewRegimeTax(income) {
+            let tax = 0;
+            
+            if (income <= 300000) {
+                tax = 0;
+            } else if (income <= 600000) {
+                tax = (income - 300000) * 0.05;
+            } else if (income <= 900000) {
+                tax = 15000 + (income - 600000) * 0.1;
+            } else if (income <= 1200000) {
+                tax = 45000 + (income - 900000) * 0.15;
+            } else if (income <= 1500000) {
+                tax = 90000 + (income - 1200000) * 0.2;
+            } else {
+                tax = 150000 + (income - 1500000) * 0.3;
+            }
+            
+            // Rebate under section 87A for new regime (if applicable)
+            if (income <= 700000) {
+                tax = Math.max(tax - 25000, 0);
+            }
+            
+            return tax;
+        }
+
+        // Display Results
+        function displayResults(result, regime) {
+            // Format currency
+            const formatCurrency = (amount) => {
+                return '₹' + amount.toLocaleString('en-IN');
+            };
+            
+            // Update summary section
+            document.getElementById('annual-income').textContent = formatCurrency(result.income);
+            document.getElementById('total-deductions').textContent = formatCurrency(result.deductions);
+            document.getElementById('taxable-income').textContent = formatCurrency(result.taxableIncome);
+            document.getElementById('income-tax').textContent = formatCurrency(result.tax);
+            document.getElementById('cess').textContent = formatCurrency(result.cess);
+            document.getElementById('total-tax').textContent = formatCurrency(result.totalTax);
+            
+            // Update tax breakup table
+            const taxBreakupTable = document.getElementById('tax-breakup-table');
+            taxBreakupTable.innerHTML = `
+                <tr>
+                    <td>Annual Income</td>
+                    <td>${formatCurrency(result.income)}</td>
+                </tr>
+                <tr>
+                    <td>${regime === 'old' ? 'Total Deductions' : 'Standard Deduction'}</td>
+                    <td>${formatCurrency(regime === 'old' ? result.deductions : 50000)}</td>
+                </tr>
+                <tr>
+                    <td>HRA Exemption</td>
+                    <td>${formatCurrency(result.income - result.taxableIncome - (regime === 'old' ? result.deductions : 50000))}</td>
+                </tr>
+                <tr>
+                    <td>Taxable Income</td>
+                    <td>${formatCurrency(result.taxableIncome)}</td>
+                </tr>
+                <tr>
+                    <td>Income Tax (${regime === 'old' ? 'Old' : 'New'} Regime)</td>
+                    <td>${formatCurrency(result.tax)}</td>
+                </tr>
+                <tr>
+                    <td>Cess (4%)</td>
+                    <td>${formatCurrency(result.cess)}</td>
+                </tr>
+                <tr class="highlight">
+                    <td>Total Tax Payable</td>
+                    <td>${formatCurrency(result.totalTax)}</td>
+                </tr>
+            `;
+            
+            // Update suggestions
+            const suggestionsDiv = document.getElementById('suggestions');
+            let suggestions = [];
+            
+            if (regime === 'old') {
+                if (result.deductions < 150000 && result.income > 500000) {
+                    suggestions.push("You can invest more in tax-saving instruments under Section 80C to maximize deductions (up to ₹1,50,000).");
+                }
+                
+                if (result.income > 1000000) {
+                    suggestions.push("Consider tax-efficient investments like ELSS or NPS which offer additional deductions beyond 80C.");
+                }
+                
+                if (result.income > 500000 && result.deductions < 50000) {
+                    suggestions.push("You may benefit from the new tax regime as your deductions are low. Compare both regimes.");
+                }
+            } else {
+                if (result.income < 750000) {
+                    suggestions.push("With income below ₹7.5 lakhs, you may be eligible for full tax rebate under the new regime.");
+                }
+                
+                if (result.income > 1500000 && result.deductions > 200000) {
+                    suggestions.push("Your deductions are substantial. Compare with old regime as it might be more beneficial.");
+                }
+            }
+            
+            if (suggestions.length > 0) {
+                suggestionsDiv.innerHTML = `
+                    <h3>Tax Saving Suggestions</h3>
+                    <ul>
+                        ${suggestions.map(s => `<li>${s}</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                suggestionsDiv.innerHTML = '';
+            }
+            
+            // Scroll to results
+            document.querySelector('.calculator-results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Login/Register Demo
+        document.querySelector('.header-actions .btn-primary').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.dashboard').style.display = 'flex';
+            document.querySelector('header').style.display = 'none';
+            document.querySelectorAll('section, footer').forEach(el => el.style.display = 'none');
+        });
+
+        document.querySelector('.header-actions .btn-outline').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.dashboard').style.display = 'flex';
+            document.querySelector('header').style.display = 'none';
+            document.querySelectorAll('section, footer').forEach(el => el.style.display = 'none');
+        });
+    </script>
+</body>
+</html>
